@@ -165,44 +165,6 @@ func (c *client) GetAddr() string {
 	return serverApi
 }
 
-func (c *client) AddMovie(id, title string) (string, error) {
-	var errorMsg, bodyString string
-	//var bodyBytes []byte
-	var Url *url.URL
-	Url, err := url.Parse(c.GetAddr())
-	if err != nil {
-		panic("Bad serverUrl")
-	}
-	// Set API method
-	Url.Path += "movie.add"
-	// Set method parameters
-	// IMDB identifier, original title, and whether to re-add existing title
-	parameters := url.Values{}
-	parameters.Add("identifier", id)
-	parameters.Add("title", title)
-	parameters.Add("force_readd", "false")
-	// Prepare URL
-	Url.RawQuery = parameters.Encode()
-	// GET URL
-	log.Printf("Will try to GET: %q\n", Url.String())
-	resp, err := c.httpClient.Get(Url.String())
-	if err != nil {
-		log.Println(err)
-		return "Can't GET " + Url.String(), err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode == http.StatusOK {
-		bodyBytes, err2 := ioutil.ReadAll(resp.Body)
-		if err2 != nil {
-			// Return JSON result
-			bodyString = string(bodyBytes)
-		}
-		return bodyString, err2
-	}
-	return bodyString, errors.New(errorMsg)
-}
-
 func (c *client) AddNewShow(tvdbid int, initial string) (*TVDBResults, error) {
 	var errorMsg string
 	var Url *url.URL

@@ -1,6 +1,6 @@
 # go-sickchill-api
 
-📺 A simple wrapper for the [SickChill](https://github.com/SickChill/SickChill) API written in Go, created mainly for its role in [SickBot](https://github.com/noam09/sickbot), a [Telegram](https://telegram.org) bot for SickChill. 
+📺 A simple wrapper for the [SickChill](https://github.com/SickChill/SickChill) API written in Go, created mainly for its role in [ChillBot](https://github.com/noam09/chillbot), a [Telegram](https://telegram.org) bot for SickChill. 
 
 ## Usage
 
